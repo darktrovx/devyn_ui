@@ -111,20 +111,21 @@ end
 
 local function createProp(prop)
     requestModel(prop.model)
-    local coords = GetEntityCoords(cache.ped)
+    local ped = PlayerPedId()
+    local coords = GetEntityCoords(ped)
     local object = CreateObject(prop.model, coords.x, coords.y, coords.z, true, true, true)
 
-    AttachEntityToEntity(object, cache.ped, GetPedBoneIndex(cache.ped, prop.bone or 60309), prop.pos.x, prop.pos.y, prop.pos.z, prop.rot.x, prop.rot.y, prop.rot.z, true, true, false, true, 0, true)
+    AttachEntityToEntity(object, ped, GetPedBoneIndex(ped, prop.bone or 60309), prop.pos.x, prop.pos.y, prop.pos.z, prop.rot.x, prop.rot.y, prop.rot.z, true, true, false, true, 0, true)
     SetModelAsNoLongerNeeded(prop.model)
 
     return object
 end
 
 local function interruptProgress(data)
-    if not data.useWhileDead and IsEntityDead(cache.ped) then return true end
-    if not data.allowRagdoll and IsPedRagdoll(cache.ped) then return true end
-    if not data.allowCuffed and IsPedCuffed(cache.ped) then return true end
-    if not data.allowFalling and IsPedFalling(cache.ped) then return true end
+    if not data.useWhileDead and IsEntityDead(ped) then return true end
+    if not data.allowRagdoll and IsPedRagdoll(ped) then return true end
+    if not data.allowCuffed and IsPedCuffed(ped) then return true end
+    if not data.allowFalling and IsPedFalling(ped) then return true end
 end
 
 local controls = {
@@ -151,11 +152,11 @@ local function startProgress(data)
     if anim then
         if anim.dict then
             requestAnimDict(anim.dict)
-
-            TaskPlayAnim(cache.ped, anim.dict, anim.clip, anim.blendIn or 3.0, anim.blendOut or 1.0, anim.duration or -1, anim.flag or 49, anim.playbackRate or 0, anim.lockX, anim.lockY, anim.lockZ)
+            local ped = PlayerPedId()
+            TaskPlayAnim(ped, anim.dict, anim.clip, anim.blendIn or 3.0, anim.blendOut or 1.0, anim.duration or -1, anim.flag or 49, anim.playbackRate or 0, anim.lockX, anim.lockY, anim.lockZ)
             RemoveAnimDict(anim.dict)
         elseif anim.scenario then
-            TaskStartScenarioInPlace(cache.ped, anim.scenario, 0, anim.playEnter ~= nil and anim.playEnter or true)
+            TaskStartScenarioInPlace(ped, anim.scenario, 0, anim.playEnter ~= nil and anim.playEnter or true)
         end
     end
 
@@ -204,7 +205,7 @@ local function startProgress(data)
 
             if disable.combat then
                 DisableControlAction(0, controls.INPUT_AIM, true)
-                DisablePlayerFiring(cache.playerId, true)
+                DisablePlayerFiring(PlayerId(), true)
             end
         end
 
@@ -227,11 +228,12 @@ local function startProgress(data)
     end
 
     if anim then
+        local ped = PlayerPedId()
         if anim.dict then
-            StopAnimTask(cache.ped, anim.dict, anim.clip, 1.0)
+            StopAnimTask(ped, anim.dict, anim.clip, 1.0)
             Wait(0) -- This is needed here otherwise the StopAnimTask is cancelled
         else
-            ClearPedTasks(cache.ped)
+            ClearPedTasks(ped)
         end
     end
 

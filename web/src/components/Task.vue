@@ -60,7 +60,7 @@
         padding: 5px;
         text-align: center;
         padding-bottom: 10px;
-        background: rgba(255, 187, 27, 0.08);
+        background: rgba(236, 27, 255, 0.08);
         border-radius: 0px 0px 6px 6px;
         box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
         border: 1px solid var(--primary-color)4d; /* Add this line to add a border */
