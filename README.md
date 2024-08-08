@@ -1,6 +1,7 @@
 # devyn_ui
 
-![image](https://github.com/user-attachments/assets/91d41875-09a2-48bb-93dc-a09cb52b257e)
+![image](https://github.com/user-attachments/assets/d1dc4648-37ff-47ee-9abf-13d87b3867f0)
+
 
 
 # Item List
