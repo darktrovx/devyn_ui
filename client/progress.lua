@@ -122,6 +122,7 @@ local function createProp(prop)
 end
 
 local function interruptProgress(data)
+    local ped = PlayerPedId()
     if not data.useWhileDead and IsEntityDead(ped) then return true end
     if not data.allowRagdoll and IsPedRagdoll(ped) then return true end
     if not data.allowCuffed and IsPedCuffed(ped) then return true end

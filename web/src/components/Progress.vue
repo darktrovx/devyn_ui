@@ -98,7 +98,7 @@
 
     .progress-text {
         font-family: 'Roboto', sans-serif;
-        color: white;
+        color: var(--accent);
         width: 400px;
         height: 20px;
         display: flex;
@@ -109,11 +109,11 @@
     }
 
     .progress-title {
-        color: white;
+        color: var(--accent);
     }
 
     .progress-percent {
-        color: white;
+        color: var(--accent);
     }
 
     .progress-bar {
@@ -137,7 +137,7 @@
     .progress-bar-tip {
         width: 5px;
         height: 20px;
-        background-color: white;
+        background-color: var(--accent);
         border-radius: 10px;
         margin-left: 5px;
         margin-right: 5px;
