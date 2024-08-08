@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+
+:root {
+    --primary-color: #FD2282;
+    --dark : #08090C;
+    --dark2: #2C2B2B;
+    --accent : #F8F0FB;
+}
+
+body {
+    font-family: 'Roboto';
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    /* Block highlighting elements */
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
